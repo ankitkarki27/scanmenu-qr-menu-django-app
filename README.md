@@ -1,0 +1,1 @@
+# scanmenu-qr-menu-django-app

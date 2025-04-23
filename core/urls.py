@@ -9,6 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', views.generate_qr_code, name='qr_code'),
-    #  path('generate/', views.generate_qr_code, name='qr_code'),
  
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

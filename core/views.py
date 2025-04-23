@@ -14,8 +14,8 @@ def generate_qr_code(request):
             
             # generate the QR code
             qr = qrcode.make(url)
-            file_name= restaurant_name.replace("","_").lower() + "_menu.png"
-            file_path=os.path.join(settings.MEDIA.ROOT,file_name) #media/restaurant_name_menu.png
+            file_name= restaurant_name.replace(" ","_").lower() + "_menu.png"
+            file_path = os.path.join(settings.MEDIA_ROOT, file_name) #media/restaurant_name_menu.png
             qr.save(file_path)
             # qr.save('file_name')    
             
@@ -26,6 +26,12 @@ def generate_qr_code(request):
                 'url': url,
             }
             return render(request,'your_qr.html',context)
+        else:
+            # 👇 Form is not valid — show form again with errors
+            context = {
+                'form': form
+                }
+            return render(request, 'qr_code.html', context)
 
     else:
         form=QRCodeForm()
@@ -33,5 +39,5 @@ def generate_qr_code(request):
             'form': form,
             
         }
-        return render(request, 'qr_code.html', context)
+    return render(request, 'qr_code.html', context)
 
